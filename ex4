@@ -1,0 +1,47 @@
+
+#include<iostream>
+
+using namespace std;
+
+class Employee {
+protected:
+	string name;
+	int salary;
+public:
+	Employee(string n, int s) : name{ n }, salary{ s } {}
+public:
+	void setName(string name) { this->name = name; }
+	void setSalary(int salary) { this->salary = salary; }
+public:
+	string getName(void) const { return name; }
+	int getSalary(void) const { return salary; }
+public:
+	int computeSalary(void) { return salary; }
+};
+
+class Manger : public Employee {
+private:
+	int bonus;
+public:
+	Manger(string n, int s, int b) : Employee(n, s), bonus{ b } {}
+public:
+	void setBonus(int bonus) { this->bonus = bonus; }
+public:
+	int getBonus(void) const { return bonus; }
+public:
+	int computeSalary(void) { return salary + bonus; }
+};
+
+int main(void) {
+
+	Manger m1("김철수", 100, 100);
+
+	cout << "이름: " << m1.getName() << endl;
+	cout << "월급: " << m1.getSalary() << endl;
+	cout << "보너스: " << m1.getBonus() << endl;
+	cout << "전체 급여: " << m1.computeSalary();
+
+	return 0;
+}
+
+//p.476 3번 문제
