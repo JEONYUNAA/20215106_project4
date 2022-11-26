@@ -1,0 +1,23 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int main(void) {
+
+	char user;
+
+	try {
+		cout << "어디로 움직일까요(a,s,w,d): ";
+		cin >> user;
+		if (user != 'a' && 's' && 'w' && 'd')
+			throw user;
+		cout << user << endl;
+	}
+	catch (char e) {
+		cout << "오류" << endl;
+	}
+	return 0;
+}
+
+//p.590 3번 문제
