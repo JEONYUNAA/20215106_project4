@@ -1,0 +1,68 @@
+#include<iostream>
+
+using namespace std;
+
+class p_Box {
+	static int s_count;
+	friend void printBox(p_Box& box);
+private:
+	int count;
+	double length;
+	double width;
+	double height;
+public:
+	p_Box(double l = 0, double w = 0, double h = 0) : length{ l }, width{ w }, height{ h } { s_count++; count = s_count; }
+public:
+	p_Box operator+(const p_Box& i_temp);
+	bool operator<(const p_Box& i_temp);
+
+public:
+	double getLength(void) const { return length; }
+	double getWidth(void) const { return width; }
+	double getHeight(void) const { return height; }
+	double getVolume(void) const { return length * width * height; }
+	int getCount(void) const { return count; }
+};
+
+int p_Box::s_count = 0;
+
+p_Box p_Box::operator+(const p_Box& i_temp) {
+	p_Box temp;
+	temp.length = this->length + i_temp.length;
+	temp.width = this->width + i_temp.width;
+	temp.height = this->height + i_temp.height;
+	return temp;
+}
+
+
+bool p_Box::operator<(const p_Box& i_temp) {
+	return (this->getVolume() < i_temp.getVolume());
+}
+
+
+void printBox(p_Box& box) {
+	cout << "상자 #" << box.getCount() << endl;
+	cout << "상자의 길이: " << box.getLength() << endl;
+	cout << "상자의 너비: " << box.getWidth() << endl;
+	cout << "상자의 높이: " << box.getHeight() << endl;
+	cout << "상자의 부피: " << box.getVolume() << endl;
+	cout << endl;
+}
+
+int main(void) {
+
+	p_Box b1(10, 10, 10);
+	p_Box b2(20, 20, 20);
+
+
+
+	printBox(b1);
+	printBox(b2);
+
+	cout << boolalpha << (b1 < b2) << endl;
+
+
+	return 0;
+}
+
+//p. 434 3번 문제
