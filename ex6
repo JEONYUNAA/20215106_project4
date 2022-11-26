@@ -1,0 +1,30 @@
+#include<iostream>
+
+using namespace std;
+
+class Weapon1 {
+public:
+	virtual void load() = 0;
+};
+class Bomb1 : public Weapon1 {
+public:
+	void load() { cout << "총을 적재합니다." << endl; }
+};
+class Gun1 : public Weapon1 {
+public:
+	void load() { cout << "폭탄을 적재합니다." << endl; }
+};
+
+int main(void) {
+	Weapon1* w1[3];
+	w1[0] = new Bomb1;
+	w1[1] = new Gun1;
+	w1[2] = new Gun1;
+
+	for (Weapon1* w : w1)
+		w->load();
+
+	return 0;
+}
+
+//p.514 2번 문제
